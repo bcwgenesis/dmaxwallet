@@ -9,6 +9,8 @@ import SplashPage from '../pages/SplashPage';
 import TopUpPage from '../pages/TopUpPage';
 import TransferPage from '../pages/TransferPage';
 
+import {Header} from '../uikits';
+
 const Stack = createStackNavigator();
 
 const Route = () => {
@@ -28,7 +30,16 @@ const Route = () => {
         <Stack.Screen
           name="HistoryPage"
           component={HistoryPage}
-          options={{headerShown: false}}
+          options={({route, navigation}: any) => {
+            return {
+              header: () => (
+                <Header
+                  title={'History'}
+                  onPressLeft={() => navigation.goBack()}
+                />
+              ),
+            };
+          }}
         />
         <Stack.Screen
           name="ScanQRPage"
@@ -38,12 +49,32 @@ const Route = () => {
         <Stack.Screen
           name="TopUpPage"
           component={TopUpPage}
-          options={{headerShown: false}}
+          options={({route, navigation}: any) => {
+            return {
+              header: () => (
+                <Header
+                  title={'Send BNB'}
+                  onPressLeft={() => navigation.goBack()}
+                  onPressRight={() => route.params?.onPressRight()}
+                />
+              ),
+            };
+          }}
         />
         <Stack.Screen
           name="TransferPage"
           component={TransferPage}
-          options={{headerShown: false}}
+          options={({route, navigation}: any) => {
+            return {
+              header: () => (
+                <Header
+                  title={'Send TDMAX'}
+                  onPressLeft={() => navigation.goBack()}
+                  onPressRight={() => route.params?.onPressRight()}
+                />
+              ),
+            };
+          }}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -22,11 +22,11 @@ const styles = StyleSheet.create({
   },
   cardContent: {
     flex: 1,
-    padding: 10,
+    padding: 20,
   },
   historyCard: {
     elevation: 1,
-    padding: 10,
+    padding: 20,
     backgroundColor: 'white',
     borderRadius: 8,
     marginTop: 20,
