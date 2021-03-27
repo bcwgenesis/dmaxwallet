@@ -6,5 +6,8 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     paddingTop: 20,
   },
+  value: {
+    color: 'black',
+  },
 });
 export default styles;

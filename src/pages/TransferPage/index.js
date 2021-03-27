@@ -1,35 +1,41 @@
 import React, {useEffect, useState} from 'react';
-import {View, Alert, ToastAndroid} from 'react-native';
+import {SafeAreaView, Alert} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 import {InputAmount} from '../../uikits';
 
+import {showToast} from '../../utils';
+
 import styles from './styles';
 
-const TransferPage = ({navigation}) => {
+const TransferPage = ({navigation, route}) => {
+  const {data} = route.params || {};
   const [transferAmount, setTransferAmount] = useState('');
+  const [recipientAddress, setRecipientAddress] = useState('');
 
   useEffect(() => {
     navigation.setParams({
       onPressRight: () => {
-        ToastAndroid.showWithGravityAndOffset(
-          'Transfer success',
-          ToastAndroid.SHORT,
-          ToastAndroid.BOTTOM,
-          0,
-          80,
-        );
+        showToast('Transfer success');
         navigation.goBack();
       },
     });
   }, []);
 
+  useEffect(() => {
+    if (data) {
+      setRecipientAddress(data);
+    }
+  }, [data]);
+
   return (
-    <View style={styles.main}>
+    <SafeAreaView style={styles.main}>
       <InputAmount
         label="SCAN"
-        onPress={() => Alert.alert('Open Scanner')}
+        onPress={() => navigation.navigate('ScanQRPage')}
         icon={<Ionicons name="md-scan-outline" size={20} />}
+        value={recipientAddress}
+        style={recipientAddress && styles.value}
       />
       <InputAmount
         label="MAX"
@@ -39,7 +45,7 @@ const TransferPage = ({navigation}) => {
         onChangeText={text => setTransferAmount(text)}
         value={transferAmount}
       />
-    </View>
+    </SafeAreaView>
   );
 };
 
