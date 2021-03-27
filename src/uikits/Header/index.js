@@ -5,7 +5,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 import styles from './styles';
 
 const Header = props => {
-  const {onPressLeft, onPressRight, title} = props;
+  const {onPressLeft, onPressRight, title, isRightDisabled} = props;
 
   return (
     <View style={styles.headerContainer}>
@@ -19,15 +19,25 @@ const Header = props => {
       </View>
       {onPressRight ? (
         <TouchableOpacity
-          onPress={() => onPressRight()}
+          activeOpacity={isRightDisabled ? 1 : 0.5}
+          onPress={() => !isRightDisabled && onPressRight()}
           style={styles.rightContainer}>
-          <Text>Continue</Text>
+          <Text
+            style={
+              isRightDisabled ? styles.disabledContinue : styles.enableContinue
+            }>
+            Continue
+          </Text>
         </TouchableOpacity>
       ) : (
         <View />
       )}
     </View>
   );
+};
+
+Header.defaultProps = {
+  isRightDisabled: true,
 };
 
 export default Header;

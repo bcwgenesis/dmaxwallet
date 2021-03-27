@@ -22,6 +22,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
+  disabledContinue: {
+    color: '#d6dcdd',
+  },
+  enableContinue: {
+    color: 'black',
+  },
 });
 
 export default styles;

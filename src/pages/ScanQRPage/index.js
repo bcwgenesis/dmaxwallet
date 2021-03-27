@@ -21,7 +21,7 @@ const ScanQRPage = ({navigation}) => {
 
   const onSuccessRead = e => {
     navigation.navigate('TransferPage', {
-      data: e.rawData,
+      data: e.data,
     });
   };
 

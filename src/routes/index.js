@@ -55,7 +55,12 @@ const Route = () => {
                 <Header
                   title={'Send BNB'}
                   onPressLeft={() => navigation.goBack()}
-                  onPressRight={() => route.params?.onPressRight()}
+                  onPressRight={() =>
+                    (route.params?.onPressRight &&
+                      route.params?.onPressRight()) ||
+                    {}
+                  }
+                  isRightDisabled={route.params?.isRightDisabled}
                 />
               ),
             };
@@ -70,7 +75,12 @@ const Route = () => {
                 <Header
                   title={'Send TDMAX'}
                   onPressLeft={() => navigation.goBack()}
-                  onPressRight={() => route.params?.onPressRight()}
+                  onPressRight={() =>
+                    (route.params?.onPressRight &&
+                      route.params?.onPressRight()) ||
+                    {}
+                  }
+                  isRightDisabled={route.params?.isRightDisabled}
                 />
               ),
             };

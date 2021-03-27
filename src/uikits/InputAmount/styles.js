@@ -24,6 +24,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  value: {
+    marginVertical: 14,
+  },
 });
 
 export default styles;

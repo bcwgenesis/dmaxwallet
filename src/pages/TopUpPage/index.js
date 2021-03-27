@@ -19,16 +19,25 @@ const TopUpPage = ({navigation}) => {
     });
   }, []);
 
+  useEffect(() => {
+    if (topUpAmount) {
+      navigation.setParams({
+        isRightDisabled: false,
+      });
+    }
+  }, [topUpAmount]);
+
   return (
     <SafeAreaView style={styles.main}>
       <InputAmount value="DMAX contract address" style={styles.value} />
       <InputAmount
         label="MAX"
         placeholder="Amount TDMAX"
-        onPress={() => Alert.alert('Max Value')}
+        onPress={() => setTopUpAmount('1000000')}
         editable
         onChangeText={text => setTopUpAmount(text)}
         value={topUpAmount}
+        keyboardType={'numeric'}
       />
     </SafeAreaView>
   );

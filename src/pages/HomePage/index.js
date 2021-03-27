@@ -1,8 +1,11 @@
 import React from 'react';
 import {SafeAreaView, Text, Image, View, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 import {Button} from '../../uikits';
+
+import {showToast} from '../../utils';
 
 import styles from './styles';
 
@@ -30,9 +33,11 @@ const HomePage = ({navigation, route}) => {
             <View style={styles.copyButtonContainer}>
               <Button
                 label="Copy"
-                onPress={() => {}}
+                onPress={() => {
+                  Clipboard.setString(pubkey);
+                  showToast('Copied to clipboard!');
+                }}
                 style={styles.buttonStyle}
-                labelContainerStyle={{alignItems: 'center', paddingLeft: 0}}
               />
             </View>
           </View>
@@ -44,12 +49,14 @@ const HomePage = ({navigation, route}) => {
           label="Top Up"
           onPress={() => navigation.navigate('TopUpPage')}
           icon={<Ionicons name="md-cash-outline" size={24} />}
+          style={styles.topUpTransferButtonContainer}
         />
         <View style={styles.buttonSeparator} />
         <Button
           label="Transfer"
           onPress={() => navigation.navigate('TransferPage')}
           icon={<Ionicons name="md-send-outline" size={24} />}
+          style={styles.topUpTransferButtonContainer}
         />
       </View>
 

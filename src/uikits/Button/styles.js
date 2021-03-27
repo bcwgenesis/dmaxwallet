@@ -8,7 +8,6 @@ const styles = StyleSheet.create({
     elevation: 1,
     backgroundColor: 'white',
     marginBottom: 8,
-    flex: 1,
     borderRadius: 8,
   },
   iconContainer: {

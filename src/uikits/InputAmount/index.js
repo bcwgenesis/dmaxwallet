@@ -13,20 +13,28 @@ const InputAmount = props => {
     editable,
     value,
     onChangeText,
+    keyboardType,
   } = props;
 
   return (
     <View style={styles.main}>
       <View style={styles.inputContainer}>
-        <TextInput
-          editable={editable}
-          placeholder={placeholder}
-          value={value}
-          onChangeText={text => {
-            editable && onChangeText(text);
-          }}
-          style={style}
-        />
+        {!editable && value ? (
+          <Text numberOfLines={1} style={styles.value}>
+            {value}
+          </Text>
+        ) : (
+          <TextInput
+            editable={editable}
+            placeholder={placeholder}
+            value={value}
+            onChangeText={text => {
+              editable && onChangeText(text);
+            }}
+            style={style}
+            keyboardType={keyboardType}
+          />
+        )}
       </View>
 
       {icon ? (

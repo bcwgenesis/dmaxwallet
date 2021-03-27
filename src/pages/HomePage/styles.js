@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     backgroundColor: 'white',
     borderRadius: 8,
-    marginTop: 20,
+    marginTop: 40,
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 10,
@@ -73,10 +73,15 @@ const styles = StyleSheet.create({
   copyButtonContainer: {
     flex: 3,
     paddingLeft: 8,
+    justifyContent: 'flex-end',
   },
   buttonStyle: {
+    paddingVertical: 8,
+    borderColor: 'grey',
+    borderWidth: 0.5,
+  },
+  topUpTransferButtonContainer: {
     flex: 1,
-    backgroundColor: '#a4b0b3',
   },
 });
 export default styles;
