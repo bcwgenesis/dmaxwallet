@@ -1,5 +1,6 @@
 import React, {useEffect} from 'react';
 import {SafeAreaView, Image} from 'react-native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {API} from '../../constants';
 
@@ -26,12 +27,21 @@ const SplashPage = ({navigation}) => {
     }
   };
 
-  const createAccount = async () => {
+  const createAccount = () => {
     try {
-      const accountData = await post(API.CREATE_ACCOUNT);
-      if (accountData) {
-        getBalance(accountData.newpubkey);
-      }
+      AsyncStorage.multiGet(['privateKey', 'publicKey']).then(data => {
+        if (data[0][1] && data[1][1]) {
+          getBalance(data[1][1]);
+        } else {
+          post(API.CREATE_ACCOUNT).then(accountData => {
+            if (accountData) {
+              AsyncStorage.setItem('privateKey', accountData.newprivkey);
+              AsyncStorage.setItem('publicKey', accountData.newpubkey);
+              getBalance(accountData.newpubkey);
+            }
+          });
+        }
+      });
     } catch (error) {
       showToast(error);
     }

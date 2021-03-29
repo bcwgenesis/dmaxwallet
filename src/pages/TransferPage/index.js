@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import {SafeAreaView} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import Clipboard from '@react-native-clipboard/clipboard';
 
 import {InputAmount} from '../../uikits';
 
@@ -50,8 +51,12 @@ const TransferPage = ({navigation, route}) => {
   return (
     <SafeAreaView style={styles.main}>
       <InputAmount
-        label="SCAN"
-        onPress={() => navigation.navigate('ScanQRPage')}
+        label="PASTE"
+        onPress={async () => {
+          const recAddress = await Clipboard.getString();
+          setRecipientAddress(recAddress);
+        }}
+        onPressIcon={() => navigation.navigate('ScanQRPage')}
         icon={<Ionicons name="md-scan-outline" size={20} />}
         value={recipientAddress}
         style={recipientAddress && styles.value}

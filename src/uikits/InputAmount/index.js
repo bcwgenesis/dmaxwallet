@@ -14,6 +14,7 @@ const InputAmount = props => {
     value,
     onChangeText,
     keyboardType,
+    onPressIcon,
   } = props;
 
   return (
@@ -38,7 +39,7 @@ const InputAmount = props => {
       </View>
 
       {icon ? (
-        <TouchableOpacity onPress={onPress} style={styles.iconContainer}>
+        <TouchableOpacity onPress={onPressIcon} style={styles.iconContainer}>
           {icon}
         </TouchableOpacity>
       ) : (

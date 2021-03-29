@@ -48,15 +48,29 @@ const HomePage = ({navigation, route}) => {
         <Button
           label="Top Up"
           onPress={() => navigation.navigate('TopUpPage')}
-          icon={<Ionicons name="md-cash-outline" size={24} />}
+          icon={<Ionicons name="md-cash-outline" size={12} />}
           style={styles.topUpTransferButtonContainer}
+          labelStyle={styles.buttonLabel}
         />
         <View style={styles.buttonSeparator} />
         <Button
           label="Transfer"
           onPress={() => navigation.navigate('TransferPage')}
-          icon={<Ionicons name="md-send-outline" size={24} />}
+          icon={<Ionicons name="md-send-outline" size={12} />}
           style={styles.topUpTransferButtonContainer}
+          labelStyle={styles.buttonLabel}
+        />
+        <View style={styles.buttonSeparator} />
+        <Button
+          label="Receive"
+          onPress={() =>
+            navigation.navigate('ReceivePage', {
+              pubkey,
+            })
+          }
+          icon={<Ionicons name="md-download-outline" size={12} />}
+          style={styles.topUpTransferButtonContainer}
+          labelStyle={styles.buttonLabel}
         />
       </View>
 

@@ -83,5 +83,8 @@ const styles = StyleSheet.create({
   topUpTransferButtonContainer: {
     flex: 1,
   },
+  buttonLabel: {
+    fontSize: 12,
+  },
 });
 export default styles;
