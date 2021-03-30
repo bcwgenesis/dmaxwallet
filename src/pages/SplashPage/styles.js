@@ -1,7 +1,5 @@
 import {StyleSheet} from 'react-native';
 
-import {deviceWidth} from '../../utils';
-
 const styles = StyleSheet.create({
   main: {
     flex: 1,
@@ -9,9 +7,8 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   logo: {
-    width: deviceWidth() - 40,
-    height: deviceWidth() / 6,
-    resizeMode: 'contain',
+    width: '100%',
+    height: '100%',
   },
 });
 export default styles;

@@ -5,5 +5,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 20,
   },
+  emptyContainer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
 });
 export default styles;

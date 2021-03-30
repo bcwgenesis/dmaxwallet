@@ -16,12 +16,14 @@ const styles = StyleSheet.create({
   rightContainer: {
     flex: 4,
     justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
     fontWeight: 'bold',
   },
   amount: {
-    fontSize: 18,
+    fontSize: 20,
+    fontWeight: 'bold',
   },
   exchangeContainer: {
     marginBottom: 10,

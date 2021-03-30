@@ -11,15 +11,15 @@ const HistoryCard = props => {
       <View style={styles.leftContainer}>
         <View style={styles.exchangeContainer}>
           <Text style={styles.title}>From</Text>
-          <Text>{sender}</Text>
+          <Text numberOfLines={1}>{sender}</Text>
         </View>
         <View style={styles.exchangeContainer}>
           <Text style={styles.title}>To</Text>
-          <Text>{recipient}</Text>
+          <Text numberOfLines={1}>{recipient}</Text>
         </View>
       </View>
       <View style={styles.rightContainer}>
-        <Text style={styles.amount}>{amount}</Text>
+        <Text style={styles.amount}>{parseFloat(amount).toFixed(3)}</Text>
       </View>
     </View>
   );

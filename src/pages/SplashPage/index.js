@@ -10,16 +10,19 @@ import {showToast} from '../../utils';
 
 import styles from './styles';
 
-import ImageLogo from '../../assets/images/img_logo.png';
+import AndroidSplash from '../../assets/images/splash_android_screen.png';
 
 const SplashPage = ({navigation}) => {
-  const getBalance = async pubkey => {
+  const getBalance = async (pubkey, privkey) => {
     try {
       const response = await get(`${API.GET_BALANCE}/${pubkey}`);
-      if (response) {
+      const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
+      if (response && responseBnb) {
         navigation.navigate('HomePage', {
           pubkey,
-          balance: response.balance,
+          privkey,
+          balance: response?.balance,
+          bnbBalance: responseBnb?.result,
         });
       }
     } catch (error) {
@@ -31,13 +34,13 @@ const SplashPage = ({navigation}) => {
     try {
       AsyncStorage.multiGet(['privateKey', 'publicKey']).then(data => {
         if (data[0][1] && data[1][1]) {
-          getBalance(data[1][1]);
+          getBalance(data[1][1], data[0][1]);
         } else {
           post(API.CREATE_ACCOUNT).then(accountData => {
             if (accountData) {
               AsyncStorage.setItem('privateKey', accountData.newprivkey);
               AsyncStorage.setItem('publicKey', accountData.newpubkey);
-              getBalance(accountData.newpubkey);
+              getBalance(accountData.newpubkey, accountData.newprivkey);
             }
           });
         }
@@ -53,7 +56,7 @@ const SplashPage = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.main}>
-      <Image source={ImageLogo} style={styles.logo} />
+      <Image source={AndroidSplash} style={styles.logo} />
     </SafeAreaView>
   );
 };

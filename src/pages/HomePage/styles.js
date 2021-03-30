@@ -2,6 +2,8 @@ import {StyleSheet} from 'react-native';
 
 import {deviceWidth} from '../../utils';
 
+import Color from '../../styles/color';
+
 const styles = StyleSheet.create({
   main: {
     flex: 1,
@@ -42,6 +44,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
+    color: Color.FREE_SPEECH_BLUE,
   },
   propsContainer: {
     marginBottom: 10,
@@ -85,6 +88,34 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     fontSize: 12,
+  },
+  qrContainer: {
+    alignItems: 'center',
+    marginBottom: 32,
+    marginTop: 12,
+  },
+  qrTitle: {
+    marginBottom: 20,
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: Color.FREE_SPEECH_BLUE,
+  },
+  flex1: {
+    flex: 1,
+  },
+  bnbBalanceContainer: {
+    flex: 1,
+    alignItems: 'flex-end',
+  },
+  bnbBalanceFont: {
+    fontSize: 32,
+    color: Color.TURBO,
+    fontWeight: 'bold',
+  },
+  dmaxBalanceFont: {
+    fontSize: 32,
+    color: Color.FREE_SPEECH_BLUE,
+    fontWeight: 'bold',
   },
 });
 export default styles;

@@ -4,7 +4,6 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import HistoryPage from '../pages/HistoryPage';
 import HomePage from '../pages/HomePage';
-import ReceivePage from '../pages/ReceivePage';
 import ScanQRPage from '../pages/ScanQRPage';
 import SplashPage from '../pages/SplashPage';
 import TopUpPage from '../pages/TopUpPage';
@@ -36,20 +35,6 @@ const Route = () => {
               header: () => (
                 <Header
                   title={'History'}
-                  onPressLeft={() => navigation.goBack()}
-                />
-              ),
-            };
-          }}
-        />
-        <Stack.Screen
-          name="ReceivePage"
-          component={ReceivePage}
-          options={({route, navigation}: any) => {
-            return {
-              header: () => (
-                <Header
-                  title={'Receive'}
                   onPressLeft={() => navigation.goBack()}
                 />
               ),
