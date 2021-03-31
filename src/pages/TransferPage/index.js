@@ -3,7 +3,7 @@ import {SafeAreaView} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Clipboard from '@react-native-clipboard/clipboard';
 
-import {InputAmount} from '../../uikits';
+import {InputAmount, ModalLoader} from '../../uikits';
 
 import {showToast} from '../../utils';
 
@@ -17,18 +17,23 @@ const TransferPage = ({navigation, route}) => {
   const {data} = route.params || {};
   const [transferAmount, setTransferAmount] = useState('');
   const [recipientAddress, setRecipientAddress] = useState('');
+  const [requestTransfer, setRequestTransfer] = useState(false);
 
   const transfer = () => {
+    setRequestTransfer(true);
     const params = {
       to: recipientAddress,
       amount: transferAmount,
     };
+
     post(API.TRANSFER, params)
       .then(response => {
+        setRequestTransfer(false);
         showToast('Transfer success');
         navigation.goBack();
       })
       .catch(error => {
+        setRequestTransfer(false);
         showToast(error);
       });
   };
@@ -50,6 +55,7 @@ const TransferPage = ({navigation, route}) => {
 
   return (
     <SafeAreaView style={styles.main}>
+      <ModalLoader visible={requestTransfer} />
       <InputAmount
         label="PASTE"
         onPress={async () => {
