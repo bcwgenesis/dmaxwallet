@@ -1,12 +1,23 @@
-import React from 'react';
-import {SafeAreaView, Text, Image, View, TouchableOpacity} from 'react-native';
+import React, {useState} from 'react';
+import {
+  SafeAreaView,
+  Text,
+  Image,
+  View,
+  TouchableOpacity,
+  RefreshControl,
+} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Clipboard from '@react-native-clipboard/clipboard';
 import QRCode from 'react-native-qrcode-svg';
 
+import {API} from '../../constants';
+
 import {Button} from '../../uikits';
 
-import {deviceWidth, showToast} from '../../utils';
+import {deviceWidth, showToast, parseBalance} from '../../utils';
+
+import {get} from '../../services';
 
 import styles from './styles';
 
@@ -14,21 +25,49 @@ import ImageLogo from '../../assets/images/img_logo.png';
 import {ScrollView} from 'react-native-gesture-handler';
 
 const HomePage = ({navigation, route}) => {
-  const {balance, pubkey, privkey} = route?.params || {};
+  const {balance, pubkey, privkey, bnbBalance} = route?.params || {};
+
+  const [isRefresh, setIsRefresh] = useState(false);
+  const [dmaxBalance, setDmaxBalance] = useState(balance);
+  const [balanceBnb, setBalanceBnb] = useState(bnbBalance);
+
+  const refreshData = async () => {
+    setIsRefresh(true);
+    try {
+      const response = await get(`${API.GET_BALANCE}/${pubkey}`);
+      const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
+
+      if (response && responseBnb) {
+        setDmaxBalance(response?.balance);
+        setBalanceBnb(responseBnb?.result);
+      }
+      setIsRefresh(false);
+    } catch (error) {
+      setIsRefresh(false);
+      showToast(error);
+    }
+  };
 
   return (
     <SafeAreaView style={styles.main}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isRefresh} onRefresh={refreshData} />
+        }>
         <Image source={ImageLogo} style={styles.logo} />
         <View style={styles.accountContainer}>
           <View style={styles.row}>
             <View style={styles.flex1}>
               <Text style={styles.title}>DMAX Balance</Text>
-              <Text style={styles.dmaxBalanceFont}>{balance}</Text>
+              <Text style={styles.dmaxBalanceFont}>
+                {parseBalance(dmaxBalance)}
+              </Text>
             </View>
             <View style={styles.bnbBalanceContainer}>
               <Text style={styles.title}>BNB Balance</Text>
-              <Text style={styles.bnbBalanceFont}>{balance}</Text>
+              <Text style={styles.bnbBalanceFont}>
+                {parseBalance(balanceBnb)}
+              </Text>
             </View>
           </View>
 
@@ -63,6 +102,7 @@ const HomePage = ({navigation, route}) => {
               navigation.navigate('TopUpPage', {
                 pubkey,
                 privkey,
+                balanceBnb,
               })
             }
             icon={<Ionicons name="md-cash-outline" size={24} />}
@@ -72,7 +112,14 @@ const HomePage = ({navigation, route}) => {
           <View style={styles.buttonSeparator} />
           <Button
             label="Transfer"
-            onPress={() => navigation.navigate('TransferPage')}
+            onPress={() =>
+              navigation.navigate('TransferPage', {
+                pubkey,
+                privkey,
+                dmaxBalance,
+                balanceBnb,
+              })
+            }
             icon={<Ionicons name="md-send-outline" size={24} />}
             style={styles.topUpTransferButtonContainer}
             labelStyle={styles.buttonLabel}

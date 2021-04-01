@@ -9,6 +9,7 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 20,
     paddingTop: 40,
+    backgroundColor: Color.FREE_SPEECH_BLUE,
   },
   logo: {
     width: deviceWidth() - 40,

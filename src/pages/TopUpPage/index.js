@@ -3,7 +3,7 @@ import {SafeAreaView} from 'react-native';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast} from '../../utils';
+import {showToast, parseBalance} from '../../utils';
 
 import {CONTRACT_ADDRESS, API} from '../../constants';
 
@@ -11,7 +11,7 @@ import styles from './styles';
 import {post} from '../../services';
 
 const TopUpPage = ({navigation, route}) => {
-  const {pubkey, privkey} = route?.params || {};
+  const {pubkey, privkey, balanceBnb} = route?.params || {};
   const [topUpAmount, setTopUpAmount] = useState('');
   const [requestTopUp, setRequestTopUp] = useState(false);
 
@@ -19,7 +19,7 @@ const TopUpPage = ({navigation, route}) => {
     setRequestTopUp(true);
     const params = {
       publicKey: pubkey,
-      privateKey: privkey,
+      privateKey: privkey.substring(2),
       amount: topUpAmount,
       contractAddress: CONTRACT_ADDRESS,
     };
@@ -54,7 +54,7 @@ const TopUpPage = ({navigation, route}) => {
       <InputAmount
         label="MAX"
         placeholder="Amount TDMAX"
-        onPress={() => setTopUpAmount('1000000')}
+        onPress={() => setTopUpAmount(parseBalance(balanceBnb - 0.0007))}
         editable
         onChangeText={text => setTopUpAmount(text)}
         value={topUpAmount}

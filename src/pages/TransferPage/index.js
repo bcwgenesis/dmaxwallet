@@ -5,7 +5,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast} from '../../utils';
+import {showToast, parseBalance} from '../../utils';
 
 import {API} from '../../constants';
 
@@ -14,7 +14,7 @@ import {post} from '../../services';
 import styles from './styles';
 
 const TransferPage = ({navigation, route}) => {
-  const {data} = route.params || {};
+  const {data, dmaxBalance, balanceBnb, pubkey, privkey} = route.params || {};
   const [transferAmount, setTransferAmount] = useState('');
   const [recipientAddress, setRecipientAddress] = useState('');
   const [requestTransfer, setRequestTransfer] = useState(false);
@@ -24,6 +24,8 @@ const TransferPage = ({navigation, route}) => {
     const params = {
       to: recipientAddress,
       amount: transferAmount,
+      from: pubkey,
+      privateKey: privkey.substring(2),
     };
 
     post(API.TRANSFER, params)
@@ -70,7 +72,7 @@ const TransferPage = ({navigation, route}) => {
       <InputAmount
         label="MAX"
         placeholder="Amount TDMAX"
-        onPress={() => setTransferAmount('1000000')}
+        onPress={() => setTransferAmount(parseBalance(dmaxBalance))}
         editable
         onChangeText={text => setTransferAmount(text)}
         value={transferAmount}
