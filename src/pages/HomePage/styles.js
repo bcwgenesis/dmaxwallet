@@ -76,11 +76,11 @@ const styles = StyleSheet.create({
     paddingLeft: 10,
   },
   addressContainer: {
-    flex: 7,
+    flex: 6,
     justifyContent: 'center',
   },
   copyButtonContainer: {
-    flex: 3,
+    flex: 4,
     paddingLeft: 8,
     justifyContent: 'flex-end',
   },

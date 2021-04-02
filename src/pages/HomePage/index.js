@@ -139,7 +139,7 @@ const HomePage = ({navigation, route}) => {
               balanceBnb,
             })
           }
-          icon={<Ionicons name="md-cash-outline" size={24} />}
+          icon={<Ionicons name="md-cash-outline" size={20} />}
           style={styles.topUpTransferButtonContainer}
           labelStyle={styles.buttonLabel}
         />
@@ -154,7 +154,7 @@ const HomePage = ({navigation, route}) => {
               balanceBnb,
             })
           }
-          icon={<Ionicons name="md-send-outline" size={24} />}
+          icon={<Ionicons name="md-send-outline" size={20} />}
           style={styles.topUpTransferButtonContainer}
           labelStyle={styles.buttonLabel}
         />
@@ -169,7 +169,7 @@ const HomePage = ({navigation, route}) => {
         style={styles.historyCard}>
         <View style={styles.row}>
           <View style={styles.iconContainer}>
-            <Ionicons name="md-receipt-outline" size={24} />
+            <Ionicons name="md-receipt-outline" size={20} />
           </View>
           <View style={styles.labelContainer}>
             <Text>History</Text>
