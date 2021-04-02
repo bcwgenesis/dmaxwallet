@@ -8,6 +8,7 @@ const styles = StyleSheet.create({
     elevation: 1,
     backgroundColor: 'white',
     marginBottom: 8,
+    borderRadius: 8,
   },
   leftContainer: {
     flex: 6,
@@ -27,6 +28,9 @@ const styles = StyleSheet.create({
   },
   exchangeContainer: {
     marginBottom: 10,
+  },
+  boldText: {
+    fontWeight: 'bold',
   },
 });
 

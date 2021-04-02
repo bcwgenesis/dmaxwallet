@@ -23,34 +23,50 @@ const HistoryPage = ({route}) => {
 
   const [isLoading, setIsLoading] = useState(true);
   const [historyData, setHistoryData] = useState([]);
+  const [isRefresh, setIsRefresh] = useState(false);
 
-  useEffect(() => {
+  const getHistory = () => {
     get(`${API.GET_HISTORY}/${pubkey}`)
       .then(responseData => {
         setHistoryData(responseData?.result);
         setIsLoading(false);
+        setIsRefresh(false);
       })
       .catch(error => {
         setIsLoading(false);
+        setIsRefresh(false);
         showToast(error?.message || 'Something went wrong');
       });
+  };
+
+  useEffect(() => {
+    getHistory();
   }, []);
+
+  const refreshData = () => {
+    setIsRefresh(true);
+    getHistory();
+  };
 
   return (
     <SafeAreaView style={styles.main}>
       {isLoading ? (
         <View style={styles.emptyContainer}>
-          <ActivityIndicator size="large" color={Color.FREE_SPEECH_BLUE} />
+          <ActivityIndicator size="large" color={Color.WHITE} />
         </View>
       ) : historyData.length ? (
         <FlatList
           data={historyData}
+          refreshing={isRefresh}
+          onRefresh={refreshData}
           keyExtractor={index => index.toString()}
+          showsVerticalScrollIndicator={false}
           renderItem={({item}) => (
             <HistoryCard
               sender={item.from}
               recipient={item.to}
               amount={item.value / 1000000000000000000}
+              pubkey={pubkey}
             />
           )}
         />

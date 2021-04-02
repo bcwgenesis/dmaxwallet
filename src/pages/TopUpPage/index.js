@@ -1,6 +1,8 @@
 import React, {useState, useEffect} from 'react';
 import {SafeAreaView} from 'react-native';
 
+import {get} from '../../services';
+
 import {InputAmount, ModalLoader} from '../../uikits';
 
 import {showToast, parseBalance} from '../../utils';
@@ -14,6 +16,8 @@ const TopUpPage = ({navigation, route}) => {
   const {pubkey, privkey, balanceBnb} = route?.params || {};
   const [topUpAmount, setTopUpAmount] = useState('');
   const [requestTopUp, setRequestTopUp] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const topUp = () => {
     setRequestTopUp(true);
@@ -25,10 +29,15 @@ const TopUpPage = ({navigation, route}) => {
     };
 
     post(API.TOP_UP, params)
-      .then(responseData => {
+      .then(async responseData => {
+        const response = await get(`${API.GET_BALANCE}/${pubkey}`);
+        const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
         setRequestTopUp(false);
         showToast('Top up success');
-        navigation.goBack();
+        navigation.navigate('HomePage', {
+          balance: response?.balance,
+          bnbBalance: responseBnb?.result,
+        });
       })
       .catch(error => {
         setRequestTopUp(false);
@@ -41,11 +50,26 @@ const TopUpPage = ({navigation, route}) => {
       navigation.setParams({
         isRightDisabled: false,
         onPressRight: () => {
-          topUp();
+          if (isAmountValid()) {
+            topUp();
+          }
         },
       });
     }
   }, [topUpAmount]);
+
+  const isAmountValid = () => {
+    if (
+      parseFloat(topUpAmount) > 0 &&
+      parseFloat(topUpAmount) <= parseBalance(balanceBnb) - 0.0007
+    ) {
+      return true;
+    } else {
+      setIsError(true);
+      setErrorMessage('Amount is not valid');
+      return false;
+    }
+  };
 
   return (
     <SafeAreaView style={styles.main}>
@@ -56,9 +80,17 @@ const TopUpPage = ({navigation, route}) => {
         placeholder="Amount TDMAX"
         onPress={() => setTopUpAmount(parseBalance(balanceBnb - 0.0007))}
         editable
-        onChangeText={text => setTopUpAmount(text)}
+        onChangeText={text => {
+          if (isError) {
+            setIsError(false);
+            setErrorMessage('');
+          }
+          setTopUpAmount(text);
+        }}
         value={topUpAmount}
         keyboardType={'numeric'}
+        isError={isError}
+        errorMessage={errorMessage}
       />
     </SafeAreaView>
   );

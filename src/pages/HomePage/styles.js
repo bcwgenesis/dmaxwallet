@@ -7,23 +7,25 @@ import Color from '../../styles/color';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    paddingHorizontal: 20,
-    paddingTop: 40,
     backgroundColor: Color.FREE_SPEECH_BLUE,
   },
   logo: {
     width: deviceWidth() - 40,
     height: deviceWidth() / 10,
     resizeMode: 'contain',
+    marginTop: 30,
+    marginBottom: 10,
+    alignSelf: 'center',
   },
   accountContainer: {
     elevation: 1,
     backgroundColor: 'white',
     borderRadius: 8,
-    marginTop: 40,
+    marginTop: 20,
     paddingHorizontal: 20,
     paddingTop: 20,
     paddingBottom: 10,
+    marginHorizontal: 20,
   },
   cardContainer: {
     elevation: 1,
@@ -41,7 +43,9 @@ const styles = StyleSheet.create({
     padding: 20,
     backgroundColor: 'white',
     borderRadius: 8,
-    marginTop: 20,
+    marginHorizontal: 20,
+    marginTop: 10,
+    marginBottom: 20,
   },
   title: {
     fontWeight: 'bold',
@@ -53,6 +57,7 @@ const styles = StyleSheet.create({
   buttonContainer: {
     flexDirection: 'row',
     marginTop: 20,
+    marginHorizontal: 20,
   },
   buttonSeparator: {
     flex: 0.1,
@@ -83,6 +88,7 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     borderColor: 'grey',
     borderWidth: 0.5,
+    alignItems: 'center',
   },
   topUpTransferButtonContainer: {
     flex: 1,
@@ -117,6 +123,27 @@ const styles = StyleSheet.create({
     fontSize: 32,
     color: Color.FREE_SPEECH_BLUE,
     fontWeight: 'bold',
+  },
+  privKeyTitle: {
+    fontWeight: 'bold',
+    color: Color.FREE_SPEECH_BLUE,
+    marginBottom: -5,
+  },
+  copyText: {
+    textAlign: 'center',
+  },
+  hiddenContent: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: Color.GAINSBORO,
+    flex: 7,
+  },
+  hiddenText: {
+    fontWeight: 'bold',
+    color: Color.WHITE,
+  },
+  showText: {
+    color: Color.BLACK,
   },
 });
 export default styles;

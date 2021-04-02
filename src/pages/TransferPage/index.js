@@ -18,6 +18,8 @@ const TransferPage = ({navigation, route}) => {
   const [transferAmount, setTransferAmount] = useState('');
   const [recipientAddress, setRecipientAddress] = useState('');
   const [requestTransfer, setRequestTransfer] = useState(false);
+  const [isError, setIsError] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
 
   const transfer = () => {
     setRequestTransfer(true);
@@ -50,10 +52,28 @@ const TransferPage = ({navigation, route}) => {
     if (transferAmount && recipientAddress) {
       navigation.setParams({
         isRightDisabled: false,
-        onPressRight: () => transfer(),
+        onPressRight: () => {
+          if (isAmountValid()) {
+            transfer();
+          }
+        },
       });
     }
   }, [transferAmount, recipientAddress]);
+
+  const isAmountValid = () => {
+    if (
+      parseFloat(transferAmount) > 0 &&
+      parseFloat(transferAmount) <= dmaxBalance &&
+      parseBalance(balanceBnb) > 0
+    ) {
+      return true;
+    } else {
+      setIsError(true);
+      setErrorMessage('Amount is not valid');
+      return false;
+    }
+  };
 
   return (
     <SafeAreaView style={styles.main}>
@@ -72,11 +92,13 @@ const TransferPage = ({navigation, route}) => {
       <InputAmount
         label="MAX"
         placeholder="Amount TDMAX"
-        onPress={() => setTransferAmount(parseBalance(dmaxBalance))}
+        onPress={() => setTransferAmount(dmaxBalance)}
         editable
         onChangeText={text => setTransferAmount(text)}
         value={transferAmount}
         keyboardType={'numeric'}
+        isError={isError}
+        errorMessage={errorMessage}
       />
     </SafeAreaView>
   );

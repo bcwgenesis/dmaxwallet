@@ -18,7 +18,7 @@ const SplashPage = ({navigation}) => {
       const response = await get(`${API.GET_BALANCE}/${pubkey}`);
       const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
       if (response && responseBnb) {
-        navigation.navigate('HomePage', {
+        navigation.replace('HomePage', {
           pubkey,
           privkey,
           balance: response?.balance,

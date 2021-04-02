@@ -12,5 +12,6 @@ export const showToast = message => {
   );
 };
 export const parseBalance = val => {
-  return parseFloat(Number(val) / 1000000000000000000).toFixed(3);
+  const returnVal = (val / 1000000000000000000).toFixed(3);
+  return returnVal;
 };

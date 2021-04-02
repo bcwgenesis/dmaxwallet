@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+import Color from '../../styles/color';
+
 const styles = StyleSheet.create({
   main: {
     elevation: 1,
@@ -26,6 +28,12 @@ const styles = StyleSheet.create({
   },
   value: {
     marginVertical: 14,
+  },
+  errorText: {
+    fontSize: 10,
+    color: Color.RED,
+    marginLeft: 25,
+    marginTop: -12,
   },
 });
 
