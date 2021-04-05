@@ -1,6 +1,6 @@
 import {StyleSheet} from 'react-native';
 
-import {deviceWidth} from '../../utils';
+import {deviceWidth, getFontSize} from '../../utils';
 
 import Color from '../../styles/color';
 
@@ -103,7 +103,7 @@ const styles = StyleSheet.create({
   },
   qrTitle: {
     marginBottom: 20,
-    fontSize: 14,
+    fontSize: getFontSize(14),
     fontWeight: 'bold',
     color: Color.FREE_SPEECH_BLUE,
   },
@@ -115,12 +115,12 @@ const styles = StyleSheet.create({
     alignItems: 'flex-end',
   },
   bnbBalanceFont: {
-    fontSize: 32,
+    fontSize: getFontSize(32),
     color: Color.TURBO,
     fontWeight: 'bold',
   },
   dmaxBalanceFont: {
-    fontSize: 32,
+    fontSize: getFontSize(32),
     color: Color.FREE_SPEECH_BLUE,
     fontWeight: 'bold',
   },
@@ -136,7 +136,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: Color.GAINSBORO,
-    flex: 7,
+    flex: 6,
   },
   hiddenText: {
     fontWeight: 'bold',
@@ -144,6 +144,14 @@ const styles = StyleSheet.create({
   },
   showText: {
     color: Color.BLACK,
+  },
+  warningText: {
+    fontSize: getFontSize(10),
+    color: 'red',
+    fontStyle: 'italic',
+    fontWeight: 'bold',
+    marginTop: -12,
+    marginBottom: 20,
   },
 });
 export default styles;

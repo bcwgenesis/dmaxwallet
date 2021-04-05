@@ -1,5 +1,7 @@
 import {StyleSheet} from 'react-native';
 
+import {getFontSize} from '../../utils';
+
 const styles = StyleSheet.create({
   cardContainer: {
     flexDirection: 'row',
@@ -23,7 +25,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   amount: {
-    fontSize: 20,
+    fontSize: getFontSize(20),
     fontWeight: 'bold',
   },
   exchangeContainer: {

@@ -1,5 +1,7 @@
 import React from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {View, TouchableOpacity, TextInput} from 'react-native';
+
+import {Text} from '../../uikits';
 
 import styles from './styles';
 

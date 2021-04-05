@@ -1,6 +1,5 @@
 import React, {useState} from 'react';
 import {
-  Text,
   Image,
   View,
   TouchableOpacity,
@@ -13,9 +12,14 @@ import QRCode from 'react-native-qrcode-svg';
 
 import {API} from '../../constants';
 
-import {Button} from '../../uikits';
+import {Button, Text} from '../../uikits';
 
-import {deviceWidth, showToast, parseBalance} from '../../utils';
+import {
+  deviceWidth,
+  showToast,
+  parseBalance,
+  parsePrivateKey,
+} from '../../utils';
 
 import {get} from '../../services';
 
@@ -105,7 +109,7 @@ const HomePage = ({navigation, route}) => {
             ) : (
               <View style={styles.addressContainer}>
                 <Text numberOfLines={1} style={styles.showText}>
-                  {privkey}
+                  {parsePrivateKey(privkey)}
                 </Text>
               </View>
             )}
@@ -117,7 +121,7 @@ const HomePage = ({navigation, route}) => {
                   if (isPrivateKeyHidden) {
                     setIsPrivateKeyHidden(false);
                   } else {
-                    Clipboard.setString(privkey);
+                    Clipboard.setString(parsePrivateKey(privkey));
                     showToast('Copied to clipboard!');
                   }
                 }}
@@ -126,6 +130,11 @@ const HomePage = ({navigation, route}) => {
               />
             </View>
           </View>
+        </View>
+        <View>
+          <Text style={styles.warningText}>
+            Please back up your private key and don't share it to anyone
+          </Text>
         </View>
       </View>
 

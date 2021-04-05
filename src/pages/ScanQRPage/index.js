@@ -20,8 +20,10 @@ const ScanQRPage = ({navigation}) => {
   let scannerRef = useRef(null);
 
   const onSuccessRead = e => {
+    const qrData = e.data.split(':');
+
     navigation.navigate('TransferPage', {
-      data: e.data,
+      data: qrData.length > 1 ? qrData[1].trim() : qrData[0],
     });
   };
 

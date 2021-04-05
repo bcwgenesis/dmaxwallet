@@ -5,7 +5,7 @@ import {get} from '../../services';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast, parseBalance} from '../../utils';
+import {showToast, parseBalance, parsePrivateKey} from '../../utils';
 
 import {CONTRACT_ADDRESS, API} from '../../constants';
 
@@ -23,7 +23,7 @@ const TopUpPage = ({navigation, route}) => {
     setRequestTopUp(true);
     const params = {
       publicKey: pubkey,
-      privateKey: privkey.substring(2),
+      privateKey: parsePrivateKey(privkey),
       amount: topUpAmount,
       contractAddress: CONTRACT_ADDRESS,
     };

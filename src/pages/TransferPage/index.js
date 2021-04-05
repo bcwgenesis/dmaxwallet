@@ -5,7 +5,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast, parseBalance} from '../../utils';
+import {showToast, parseBalance, parsePrivateKey} from '../../utils';
 
 import {API} from '../../constants';
 
@@ -27,7 +27,7 @@ const TransferPage = ({navigation, route}) => {
       to: recipientAddress,
       amount: transferAmount,
       from: pubkey,
-      privateKey: privkey.substring(2),
+      privateKey: parsePrivateKey(privkey),
     };
 
     post(API.TRANSFER, params)
@@ -88,6 +88,8 @@ const TransferPage = ({navigation, route}) => {
         icon={<Ionicons name="md-scan-outline" size={20} />}
         value={recipientAddress}
         style={recipientAddress && styles.value}
+        editable
+        onChangeText={text => setRecipientAddress(text)}
       />
       <InputAmount
         label="MAX"

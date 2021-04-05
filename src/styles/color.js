@@ -4,6 +4,7 @@ export default {
   FREE_SPEECH_BLUE: '#474CC6',
   GAINSBORO: '#DBDBDB',
   RED: 'white',
+  SUVA_GREY: '#929292',
   TURBO: '#FBC919',
   WHITE: '#FFFFFF',
 };

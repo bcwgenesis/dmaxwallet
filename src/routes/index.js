@@ -4,6 +4,8 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 import HistoryPage from '../pages/HistoryPage';
 import HomePage from '../pages/HomePage';
+import LoginPage from '../pages/LoginPage';
+import RetrieveKeyPage from '../pages/RetrieveKeyPage';
 import ScanQRPage from '../pages/ScanQRPage';
 import SplashPage from '../pages/SplashPage';
 import TopUpPage from '../pages/TopUpPage';
@@ -40,6 +42,16 @@ const Route = () => {
               ),
             };
           }}
+        />
+        <Stack.Screen
+          name="LoginPage"
+          component={LoginPage}
+          options={{headerShown: false}}
+        />
+        <Stack.Screen
+          name="RetrieveKeyPage"
+          component={RetrieveKeyPage}
+          options={{headerShown: false}}
         />
         <Stack.Screen
           name="ScanQRPage"

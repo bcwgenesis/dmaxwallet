@@ -13,12 +13,12 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   centerContainer: {
-    flex: 7,
+    flex: 6,
     paddingLeft: 10,
     justifyContent: 'center',
   },
   rightContainer: {
-    flex: 2,
+    flex: 4,
     alignItems: 'flex-end',
     justifyContent: 'center',
   },
