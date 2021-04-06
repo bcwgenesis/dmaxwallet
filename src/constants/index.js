@@ -3,6 +3,7 @@ export const API = {
   GET_BALANCE: '/balanceOf',
   GET_BNB_BALANCE: '/bnbBalanceOf',
   GET_HISTORY: '/getHistory',
+  GET_PUBLIC_KEY: '/publicKeyOf',
   TOP_UP: '/topup',
   TRANSFER: '/transfer',
 };

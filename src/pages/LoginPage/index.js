@@ -1,9 +1,9 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {SafeAreaView, View, Image} from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import {API} from '../../constants';
-import {Button, Text} from '../../uikits';
+import {Button, Text, ModalLoader} from '../../uikits';
 import {post} from '../../services';
 import {getBalance} from '../../utils';
 
@@ -12,7 +12,10 @@ import LoginImage from '../../assets/images/login_image.png';
 import styles from './styles';
 
 const LoginPage = ({navigation}) => {
+  const [isModalVisible, setIsModalVisible] = useState(false);
+
   const createWallet = () => {
+    setIsModalVisible(true);
     post(API.CREATE_ACCOUNT).then(accountData => {
       if (accountData) {
         AsyncStorage.setItem('privateKey', accountData.newprivkey);
@@ -21,6 +24,7 @@ const LoginPage = ({navigation}) => {
           accountData.newpubkey,
           accountData.newprivkey,
           (pubkey, privkey, balance, bnbBalance) => {
+            setIsModalVisible(false);
             navigation.reset({
               index: 0,
               routes: [
@@ -43,6 +47,7 @@ const LoginPage = ({navigation}) => {
 
   return (
     <SafeAreaView style={styles.main}>
+      <ModalLoader visible={isModalVisible} label="Requesting data ..." />
       <Text size={16} weight="bold">
         DMAX WALLET
       </Text>
@@ -69,7 +74,7 @@ const LoginPage = ({navigation}) => {
       <View style={styles.buttonContainer}>
         <Button
           label="Create Wallet"
-          onPress={() => {}}
+          onPress={createWallet}
           labelStyle={styles.buttonLabel}
           style={styles.button}
         />

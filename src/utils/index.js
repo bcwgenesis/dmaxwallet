@@ -36,7 +36,8 @@ export const getBalance = async (pubkey, privkey, onSuccess) => {
     const response = await get(`${API.GET_BALANCE}/${pubkey}`);
     const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
     if (response && responseBnb) {
-      onSuccess && onSuccess(pubkey, privkey, response?.balance, responseBnb?.result);
+      onSuccess &&
+        onSuccess(pubkey, privkey, response?.balance, responseBnb?.result);
     }
   } catch (error) {
     showToast(error);

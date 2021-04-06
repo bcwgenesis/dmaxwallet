@@ -51,7 +51,21 @@ const Route = () => {
         <Stack.Screen
           name="RetrieveKeyPage"
           component={RetrieveKeyPage}
-          options={{headerShown: false}}
+          options={({route, navigation}: any) => {
+            return {
+              header: () => (
+                <Header
+                  onPressLeft={() => navigation.goBack()}
+                  onPressRight={() =>
+                    (route.params?.onPressRight &&
+                      route.params?.onPressRight()) ||
+                    {}
+                  }
+                  isRightDisabled={route.params?.isRightDisabled}
+                />
+              ),
+            };
+          }}
         />
         <Stack.Screen
           name="ScanQRPage"
