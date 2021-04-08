@@ -5,7 +5,7 @@ import {get} from '../../services';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast, parseBalance, parsePrivateKey} from '../../utils';
+import {showToast, parseBalance, parsePrivateKey, authenticate} from '../../utils';
 
 import {CONTRACT_ADDRESS, API} from '../../constants';
 
@@ -51,7 +51,7 @@ const TopUpPage = ({navigation, route}) => {
         isRightDisabled: false,
         onPressRight: () => {
           if (isAmountValid()) {
-            topUp();
+            authenticate(topUp());
           }
         },
       });

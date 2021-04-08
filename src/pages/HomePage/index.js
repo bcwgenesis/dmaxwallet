@@ -19,6 +19,7 @@ import {
   showToast,
   parseBalance,
   parsePrivateKey,
+  authenticate,
 } from '../../utils';
 
 import {get} from '../../services';
@@ -119,7 +120,9 @@ const HomePage = ({navigation, route}) => {
                 label={isPrivateKeyHidden ? 'Show' : 'Copy'}
                 onPress={() => {
                   if (isPrivateKeyHidden) {
-                    setIsPrivateKeyHidden(false);
+                    authenticate(() => {
+                      setIsPrivateKeyHidden(false);
+                    });
                   } else {
                     Clipboard.setString(parsePrivateKey(privkey));
                     showToast('Copied to clipboard!');

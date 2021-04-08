@@ -1,4 +1,6 @@
 import {Dimensions, ToastAndroid, PixelRatio, Platform} from 'react-native';
+import LocalAuth from 'react-native-local-auth';
+
 import {API} from '../constants';
 import {get} from '../services';
 
@@ -21,7 +23,10 @@ export const parseBalance = val => {
   return returnVal;
 };
 export const parsePrivateKey = privkey => {
-  return privkey.substring(2);
+  if (String(privkey.substring(0, 2)) === '0x') {
+    return privkey.substring(2);
+  }
+  return privkey;
 };
 export const getFontSize = size => {
   const newSize = size * scale;
@@ -35,6 +40,7 @@ export const getBalance = async (pubkey, privkey, onSuccess) => {
   try {
     const response = await get(`${API.GET_BALANCE}/${pubkey}`);
     const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
+
     if (response && responseBnb) {
       onSuccess &&
         onSuccess(pubkey, privkey, response?.balance, responseBnb?.result);
@@ -42,4 +48,20 @@ export const getBalance = async (pubkey, privkey, onSuccess) => {
   } catch (error) {
     showToast(error);
   }
+};
+export const authenticate = onSuccess => {
+  LocalAuth.authenticate({
+    reason: 'This is a secure area, please authenticate yourself',
+    fallbackToPasscode: true, // fallback to passcode on cancel
+    suppressEnterPassword: true, // disallow Enter Password fallback
+  })
+    .then(success => {
+      onSuccess && onSuccess();
+    })
+    .catch(error => {
+      if (error.code === 'E_FAILED_TO_SHOW_AUTH'){
+        onSuccess && onSuccess();
+      }
+      console.error(JSON.stringify(error));
+    });
 };

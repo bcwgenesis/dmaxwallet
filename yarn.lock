@@ -5614,6 +5614,11 @@ react-native-iphone-x-helper@^1.3.0:
   resolved "https://registry.yarnpkg.com/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha512-HOf0jzRnq2/aFUcdCJ9w9JGzN3gdEg0zFE4FyYlp4jtidqU03D5X7ZegGKfT1EWteR0gPBGp9ye5T5FvSWi9Yg==
 
+react-native-local-auth@^1.6.0:
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/react-native-local-auth/-/react-native-local-auth-1.6.0.tgz#32353a21829a71867b2f97556c9ff560e5fabd8b"
+  integrity sha512-36cYGZGCG82pMiVJbQa5WMA93khP4v5JqLutFkMyB/eRpCULHmojNIBlbUPIY9SCeN4sg5VBRFTVGCtTg2r2kA==
+
 react-native-permissions@^2.0.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/react-native-permissions/-/react-native-permissions-2.2.2.tgz#3d2a63f6b7d6be52fc86e30f77412a9566283028"

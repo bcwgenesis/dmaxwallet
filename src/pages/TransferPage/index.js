@@ -5,7 +5,7 @@ import Clipboard from '@react-native-clipboard/clipboard';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast, parseBalance, parsePrivateKey} from '../../utils';
+import {showToast, parseBalance, parsePrivateKey, authenticate} from '../../utils';
 
 import {API} from '../../constants';
 
@@ -54,7 +54,7 @@ const TransferPage = ({navigation, route}) => {
         isRightDisabled: false,
         onPressRight: () => {
           if (isAmountValid()) {
-            transfer();
+            authenticate(transfer());
           }
         },
       });
