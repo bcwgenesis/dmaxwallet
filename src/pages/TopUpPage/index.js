@@ -51,7 +51,7 @@ const TopUpPage = ({navigation, route}) => {
         isRightDisabled: false,
         onPressRight: () => {
           if (isAmountValid()) {
-            authenticate(topUp());
+            authenticate(topUp);
           }
         },
       });
@@ -77,7 +77,7 @@ const TopUpPage = ({navigation, route}) => {
       <InputAmount value={CONTRACT_ADDRESS} style={styles.value} />
       <InputAmount
         label="MAX"
-        placeholder="Amount TDMAX"
+        placeholder="Amount BNB"
         onPress={() => setTopUpAmount(parseBalance(balanceBnb - 0.0007))}
         editable
         onChangeText={text => {

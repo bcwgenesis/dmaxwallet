@@ -54,7 +54,7 @@ const TransferPage = ({navigation, route}) => {
         isRightDisabled: false,
         onPressRight: () => {
           if (isAmountValid()) {
-            authenticate(transfer());
+            authenticate(transfer);
           }
         },
       });
@@ -93,7 +93,7 @@ const TransferPage = ({navigation, route}) => {
       />
       <InputAmount
         label="MAX"
-        placeholder="Amount TDMAX"
+        placeholder="Amount DMAX"
         onPress={() => setTransferAmount(dmaxBalance)}
         editable
         onChangeText={text => setTransferAmount(text)}
