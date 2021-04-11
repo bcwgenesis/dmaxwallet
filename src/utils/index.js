@@ -50,18 +50,21 @@ export const getBalance = async (pubkey, privkey, onSuccess) => {
   }
 };
 export const authenticate = onSuccess => {
-  LocalAuth.authenticate({
-    reason: 'This is a secure area, please authenticate yourself',
-    fallbackToPasscode: true, // fallback to passcode on cancel
-    suppressEnterPassword: true, // disallow Enter Password fallback
-  })
-    .then(success => {
-      onSuccess && onSuccess();
+  const reason = 'This is a secure area, please authenticate yourself';
+  if (Platform.OS === 'android') {
+    LocalAuth.authenticate({
+      reason,
+      fallbackToPasscode: true, // fallback to passcode on cancel
+      suppressEnterPassword: true, // disallow Enter Password fallback
     })
-    .catch(error => {
-      if (error.code === 'E_FAILED_TO_SHOW_AUTH'){
+      .then(success => {
         onSuccess && onSuccess();
-      }
-      console.error(JSON.stringify(error));
-    });
+      })
+      .catch(error => {
+        if (error.code === 'E_FAILED_TO_SHOW_AUTH') {
+          onSuccess && onSuccess();
+        }
+        console.error(JSON.stringify(error));
+      });
+  }
 };

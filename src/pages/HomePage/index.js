@@ -24,9 +24,11 @@ import {
 
 import {get} from '../../services';
 
+import Color from '../../styles/color';
 import styles from './styles';
 
 import ImageLogo from '../../assets/images/img_logo.png';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 const HomePage = ({navigation, route}) => {
   const {balance, pubkey, privkey, bnbBalance} = route?.params || {};
@@ -54,141 +56,143 @@ const HomePage = ({navigation, route}) => {
   };
 
   return (
-    <ScrollView
-      refreshControl={
-        <RefreshControl refreshing={isRefresh} onRefresh={refreshData} />
-      }
-      showsVerticalScrollIndicator={false}
-      style={styles.main}>
-      <Image source={ImageLogo} style={styles.logo} />
-      <View style={styles.accountContainer}>
-        <View style={styles.row}>
-          <View style={styles.flex1}>
-            <Text style={styles.title}>DMAX Balance</Text>
-            <Text style={styles.dmaxBalanceFont}>
-              {dmaxBalance && parseFloat(dmaxBalance).toFixed(3)}
-            </Text>
-          </View>
-          <View style={styles.bnbBalanceContainer}>
-            <Text style={styles.title}>BNB Balance</Text>
-            <Text style={styles.bnbBalanceFont}>
-              {parseBalance(balanceBnb)}
-            </Text>
-          </View>
-        </View>
-
-        <View style={styles.qrContainer}>
-          <Text style={styles.qrTitle}>BSC Wallet Address</Text>
-          <QRCode value={pubkey} size={deviceWidth() - 200} />
-        </View>
-
-        <View style={styles.propsContainer}>
-          <View style={styles.row}>
-            <View style={styles.addressContainer}>
-              <Text numberOfLines={1}>{pubkey}</Text>
-            </View>
-            <View style={styles.copyButtonContainer}>
-              <Button
-                label="Copy"
-                onPress={() => {
-                  Clipboard.setString(pubkey);
-                  showToast('Copied to clipboard!');
-                }}
-                style={styles.buttonStyle}
-                labelStyle={styles.copyText}
-              />
-            </View>
-          </View>
-        </View>
-
-        <View style={styles.propsContainer}>
-          <View style={styles.row}>
-            {isPrivateKeyHidden ? (
-              <View style={styles.hiddenContent}>
-                <Text style={styles.hiddenText}>Private Key</Text>
-              </View>
-            ) : (
-              <View style={styles.addressContainer}>
-                <Text numberOfLines={1} style={styles.showText}>
-                  {parsePrivateKey(privkey)}
-                </Text>
-              </View>
-            )}
-
-            <View style={styles.copyButtonContainer}>
-              <Button
-                label={isPrivateKeyHidden ? 'Show' : 'Copy'}
-                onPress={() => {
-                  if (isPrivateKeyHidden) {
-                    authenticate(() => {
-                      setIsPrivateKeyHidden(false);
-                    });
-                  } else {
-                    Clipboard.setString(parsePrivateKey(privkey));
-                    showToast('Copied to clipboard!');
-                  }
-                }}
-                style={styles.buttonStyle}
-                labelStyle={styles.copyText}
-              />
-            </View>
-          </View>
-        </View>
-        <View>
-          <Text style={styles.warningText}>
-            Please back up your private key and don't share it to anyone
-          </Text>
-        </View>
-      </View>
-
-      <View style={styles.buttonContainer}>
-        <Button
-          label="Top Up"
-          onPress={() =>
-            navigation.navigate('TopUpPage', {
-              pubkey,
-              privkey,
-              balanceBnb,
-            })
-          }
-          icon={<Ionicons name="md-cash-outline" size={20} />}
-          style={styles.topUpTransferButtonContainer}
-          labelStyle={styles.buttonLabel}
-        />
-        <View style={styles.buttonSeparator} />
-        <Button
-          label="Transfer"
-          onPress={() =>
-            navigation.navigate('TransferPage', {
-              pubkey,
-              privkey,
-              dmaxBalance,
-              balanceBnb,
-            })
-          }
-          icon={<Ionicons name="md-send-outline" size={20} />}
-          style={styles.topUpTransferButtonContainer}
-          labelStyle={styles.buttonLabel}
-        />
-      </View>
-
-      <TouchableOpacity
-        onPress={() =>
-          navigation.navigate('HistoryPage', {
-            pubkey,
-          })
+    <SafeAreaView style={styles.main}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl refreshing={isRefresh} onRefresh={refreshData} />
         }
-        style={styles.historyCard}>
-        <View style={styles.row}>
-          <View style={styles.iconContainer}>
-            <Ionicons name="md-receipt-outline" size={20} />
+        showsVerticalScrollIndicator={false}
+        style={styles.main}>
+        <Image source={ImageLogo} style={styles.logo} />
+        <View style={styles.accountContainer}>
+          <View style={styles.row}>
+            <View style={styles.flex1}>
+              <Text style={styles.title}>DMAX Balance</Text>
+              <Text style={styles.dmaxBalanceFont}>
+                {dmaxBalance && parseFloat(dmaxBalance).toFixed(3)}
+              </Text>
+            </View>
+            <View style={styles.bnbBalanceContainer}>
+              <Text style={styles.title}>BNB Balance</Text>
+              <Text style={styles.bnbBalanceFont}>
+                {parseBalance(balanceBnb)}
+              </Text>
+            </View>
           </View>
-          <View style={styles.labelContainer}>
-            <Text>History</Text>
+
+          <View style={styles.qrContainer}>
+            <Text style={styles.qrTitle}>BSC Wallet Address</Text>
+            <QRCode value={pubkey} size={deviceWidth() - 200} />
+          </View>
+
+          <View style={styles.propsContainer}>
+            <View style={styles.row}>
+              <View style={styles.addressContainer}>
+                <Text numberOfLines={1}>{pubkey}</Text>
+              </View>
+              <View style={styles.copyButtonContainer}>
+                <Button
+                  label="Copy"
+                  onPress={() => {
+                    Clipboard.setString(pubkey);
+                    showToast('Copied to clipboard!');
+                  }}
+                  style={styles.buttonStyle}
+                  labelStyle={styles.copyText}
+                />
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.propsContainer}>
+            <View style={styles.row}>
+              {isPrivateKeyHidden ? (
+                <View style={styles.hiddenContent}>
+                  <Text style={styles.hiddenText}>Private Key</Text>
+                </View>
+              ) : (
+                <View style={styles.addressContainer}>
+                  <Text numberOfLines={1} style={styles.showText}>
+                    {parsePrivateKey(privkey)}
+                  </Text>
+                </View>
+              )}
+
+              <View style={styles.copyButtonContainer}>
+                <Button
+                  label={isPrivateKeyHidden ? 'Show' : 'Copy'}
+                  onPress={() => {
+                    if (isPrivateKeyHidden) {
+                      authenticate(() => {
+                        setIsPrivateKeyHidden(false);
+                      });
+                    } else {
+                      Clipboard.setString(parsePrivateKey(privkey));
+                      showToast('Copied to clipboard!');
+                    }
+                  }}
+                  style={styles.buttonStyle}
+                  labelStyle={styles.copyText}
+                />
+              </View>
+            </View>
+          </View>
+          <View>
+            <Text style={styles.warningText}>
+              Please back up your private key and don't share it to anyone
+            </Text>
           </View>
         </View>
-      </TouchableOpacity>
-    </ScrollView>
+
+        <View style={styles.buttonContainer}>
+          <Button
+            label="Top Up"
+            onPress={() =>
+              navigation.navigate('TopUpPage', {
+                pubkey,
+                privkey,
+                balanceBnb,
+              })
+            }
+            icon={<Ionicons name="md-cash-outline" size={20} />}
+            style={styles.topUpTransferButtonContainer}
+            labelStyle={styles.buttonLabel}
+          />
+          <View style={styles.buttonSeparator} />
+          <Button
+            label="Transfer"
+            onPress={() =>
+              navigation.navigate('TransferPage', {
+                pubkey,
+                privkey,
+                dmaxBalance,
+                balanceBnb,
+              })
+            }
+            icon={<Ionicons name="md-send-outline" size={20} />}
+            style={styles.topUpTransferButtonContainer}
+            labelStyle={styles.buttonLabel}
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={() =>
+            navigation.navigate('HistoryPage', {
+              pubkey,
+            })
+          }
+          style={styles.historyCard}>
+          <View style={styles.row}>
+            <View style={styles.iconContainer}>
+              <Ionicons name="md-receipt-outline" size={20} />
+            </View>
+            <View style={styles.labelContainer}>
+              <Text style={styles.buttonLabel}>History</Text>
+            </View>
+          </View>
+        </TouchableOpacity>
+      </ScrollView>
+    </SafeAreaView>
   );
 };
 

@@ -77,6 +77,7 @@ const RetrieveKeyPage = ({navigation}) => {
         style={privateKey && styles.value}
         editable
         onChangeText={text => setPrivateKey(text)}
+        placeholder="Private Key from back up"
       />
     </SafeAreaView>
   );

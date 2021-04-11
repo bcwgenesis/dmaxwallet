@@ -1,11 +1,16 @@
 import React, {useState, useEffect} from 'react';
-import {SafeAreaView} from 'react-native';
+import {View} from 'react-native';
 
 import {get} from '../../services';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast, parseBalance, parsePrivateKey, authenticate} from '../../utils';
+import {
+  showToast,
+  parseBalance,
+  parsePrivateKey,
+  authenticate,
+} from '../../utils';
 
 import {CONTRACT_ADDRESS, API} from '../../constants';
 
@@ -72,7 +77,7 @@ const TopUpPage = ({navigation, route}) => {
   };
 
   return (
-    <SafeAreaView style={styles.main}>
+    <View style={styles.main}>
       <ModalLoader visible={requestTopUp} />
       <InputAmount value={CONTRACT_ADDRESS} style={styles.value} />
       <InputAmount
@@ -92,7 +97,7 @@ const TopUpPage = ({navigation, route}) => {
         isError={isError}
         errorMessage={errorMessage}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

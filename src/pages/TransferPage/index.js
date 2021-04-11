@@ -1,11 +1,17 @@
 import React, {useEffect, useState} from 'react';
-import {SafeAreaView} from 'react-native';
+import {View} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Clipboard from '@react-native-clipboard/clipboard';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import {InputAmount, ModalLoader} from '../../uikits';
 
-import {showToast, parseBalance, parsePrivateKey, authenticate} from '../../utils';
+import {
+  showToast,
+  parseBalance,
+  parsePrivateKey,
+  authenticate,
+} from '../../utils';
 
 import {API} from '../../constants';
 

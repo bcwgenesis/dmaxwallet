@@ -1,6 +1,7 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import Text from '../Text';
 
@@ -10,14 +11,14 @@ const Header = props => {
   const {onPressLeft, onPressRight, title, isRightDisabled} = props;
 
   return (
-    <View style={styles.headerContainer}>
+    <SafeAreaView style={styles.headerContainer}>
       <TouchableOpacity
         onPress={() => onPressLeft()}
         style={styles.leftContainer}>
         <Ionicons name="md-arrow-back-outline" size={24} />
       </TouchableOpacity>
       <View style={styles.centerContainer}>
-        <Text>{title}</Text>
+        <Text style={styles.headerFont}>{title}</Text>
       </View>
       {onPressRight ? (
         <TouchableOpacity
@@ -34,7 +35,7 @@ const Header = props => {
       ) : (
         <View />
       )}
-    </View>
+    </SafeAreaView>
   );
 };
 

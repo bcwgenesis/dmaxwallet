@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 import Color from '../../styles/color';
 import {getFontSize} from '../../utils';
@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     marginHorizontal: 20,
     marginTop: 10,
     justifyContent: 'center',
+    paddingVertical: Platform.OS === 'ios' ? 16 : 0,
   },
   iconContainer: {
     flex: 1,
@@ -29,13 +30,17 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   value: {
-    marginVertical: 14,
+    fontSize: getFontSize(12),
+    marginVertical: 0,
   },
   errorText: {
     fontSize: getFontSize(10),
     color: Color.RED,
     marginLeft: 25,
     marginTop: -12,
+  },
+  labelFont: {
+    fontSize: getFontSize(12),
   },
 });
 

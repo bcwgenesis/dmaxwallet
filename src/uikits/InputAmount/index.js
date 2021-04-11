@@ -3,6 +3,7 @@ import {View, TouchableOpacity, TextInput} from 'react-native';
 
 import {Text} from '../../uikits';
 
+import Color from '../../styles/color';
 import styles from './styles';
 
 const InputAmount = props => {
@@ -21,10 +22,20 @@ const InputAmount = props => {
     errorMessage,
   } = props;
 
+  const inputContainerStyle = () => {
+    if (!editable && value) {
+      return {
+        ...styles.inputContainer,
+        paddingVertical: 14,
+      };
+    }
+    return styles.inputContainer;
+  };
+
   return (
     <>
       <View style={styles.main}>
-        <View style={styles.inputContainer}>
+        <View style={inputContainerStyle()}>
           {!editable && value ? (
             <Text numberOfLines={1} style={styles.value}>
               {value}
@@ -39,6 +50,7 @@ const InputAmount = props => {
               }}
               style={style}
               keyboardType={keyboardType}
+              placeholderTextColor={Color.SUVA_GREY}
             />
           )}
         </View>
@@ -52,12 +64,12 @@ const InputAmount = props => {
         )}
 
         <TouchableOpacity onPress={onPress} style={styles.rightContainer}>
-          <Text>{label}</Text>
+          <Text style={styles.labelFont}>{label}</Text>
         </TouchableOpacity>
       </View>
       {isError ? (
         <View>
-        <Text style={styles.errorText}>{errorMessage}</Text>
+          <Text style={styles.errorText}>{errorMessage}</Text>
         </View>
       ) : (
         <View />

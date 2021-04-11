@@ -1,12 +1,13 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
+
+import {getFontSize} from '../../utils';
 
 const styles = StyleSheet.create({
   headerContainer: {
     flexDirection: 'row',
     paddingHorizontal: 20,
-    paddingVertical: 15,
-    elevation: 1,
     backgroundColor: 'white',
+    height: Platform.OS === 'ios' ? 70 : 88,
   },
   leftContainer: {
     flex: 1,
@@ -23,10 +24,15 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   disabledContinue: {
+    fontSize: getFontSize(14),
     color: '#d6dcdd',
   },
   enableContinue: {
+    fontSize: getFontSize(14),
     color: 'black',
+  },
+  headerFont: {
+    fontSize: getFontSize(14),
   },
 });
 

@@ -1,4 +1,4 @@
-import {StyleSheet} from 'react-native';
+import {StyleSheet, Platform} from 'react-native';
 
 import {deviceWidth, getFontSize} from '../../utils';
 
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   buttonLabel: {
-    fontSize: 12,
+    fontSize: getFontSize(12),
   },
   qrContainer: {
     alignItems: 'center',
@@ -131,6 +131,8 @@ const styles = StyleSheet.create({
   },
   copyText: {
     textAlign: 'center',
+    fontSize: getFontSize(12),
+    marginLeft: Platform.OS === 'ios' ? -14 : 0,
   },
   hiddenContent: {
     alignItems: 'center',
@@ -150,7 +152,7 @@ const styles = StyleSheet.create({
     color: 'red',
     fontStyle: 'italic',
     fontWeight: 'bold',
-    marginTop: -12,
+    marginTop: Platform.OS === 'ios' ? 0 : -4,
     marginBottom: 20,
   },
 });
