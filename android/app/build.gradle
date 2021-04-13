@@ -136,7 +136,7 @@ android {
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1
-        versionName "1.0"
+        versionName "1.0.0"
         missingDimensionStrategy 'react-native-camera', 'general'
     }
     splits {
@@ -154,6 +154,16 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            // storeFile rootProject.file('keystores/production.keystore')
+            // storePassword System.getenv("KEYSTORE_DMAXX_PASS")
+            // keyAlias System.getenv("ALIAS_DMAXX_NAME")
+            // keyPassword System.getenv("ALIAS_DMAXX_PASS")
+            storeFile rootProject.file('production.keystore')
+            storePassword 'dmaxwallet#123!'
+            keyAlias 'dmaxwallet2021'
+            keyPassword 'dmaxwallet#123!'
+        }
     }
     buildTypes {
         debug {
@@ -162,7 +172,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -187,6 +197,7 @@ android {
 
 dependencies {
     implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation "org.conscrypt:conscrypt-android:2.1.0"
     //noinspection GradleDynamicVersion
     implementation "com.facebook.react:react-native:+"  // From node_modules
 

@@ -66,5 +66,7 @@ export const authenticate = onSuccess => {
         }
         console.error(JSON.stringify(error));
       });
+  } else {
+    onSuccess && onSuccess();
   }
 };
