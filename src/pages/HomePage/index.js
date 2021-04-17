@@ -24,7 +24,6 @@ import {
 
 import {get} from '../../services';
 
-import Color from '../../styles/color';
 import styles from './styles';
 
 import ImageLogo from '../../assets/images/img_logo.png';

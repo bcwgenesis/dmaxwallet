@@ -5,6 +5,7 @@ platform :ios, '10.0'
 
 target 'DMaxWallet' do
   permissions_path = '../node_modules/react-native-permissions/ios'
+  node_modules_path = '../node_modules'
 
   pod 'Permission-AppTrackingTransparency', :path => "#{permissions_path}/AppTrackingTransparency"
   pod 'Permission-BluetoothPeripheral', :path => "#{permissions_path}/BluetoothPeripheral"
@@ -25,6 +26,7 @@ target 'DMaxWallet' do
   pod 'Permission-Siri', :path => "#{permissions_path}/Siri"
   pod 'Permission-SpeechRecognition', :path => "#{permissions_path}/SpeechRecognition"
   pod 'Permission-StoreKit', :path => "#{permissions_path}/StoreKit"
+  pod 'TouchID', :path => "#{node_modules_path}/react-native-touch-id"
 
   config = use_native_modules!
 

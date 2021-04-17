@@ -10,8 +10,10 @@ import AndroidSplash from '../../assets/images/splash_android_screen.png';
 
 const SplashPage = ({navigation}) => {
   const createAccount = () => {
+    console.log('create account');
     try {
       AsyncStorage.multiGet(['privateKey', 'publicKey']).then(data => {
+        console.log('data: '+data);
         if (data[0][1] && data[1][1]) {
           getBalance(
             data[1][1],
@@ -26,10 +28,12 @@ const SplashPage = ({navigation}) => {
             },
           );
         } else {
+          console.log('MASUK SINI');
           navigation.replace('LoginPage');
         }
       });
     } catch (error) {
+      console.log('ERROR');
       showToast(error);
     }
   };

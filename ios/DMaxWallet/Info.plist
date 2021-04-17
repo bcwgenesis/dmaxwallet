@@ -3,12 +3,11 @@
 <plist version="1.0">
 <dict>
 	<key>NSCameraUsageDescription</key>
-  	<string>We need camera for scan QR code</string>
-	<!-- Include this only if you are planning to use the camera roll -->
+	<string>We need camera for scan QR code</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>We need to use photo library</string>
-
-	<!-- Include this only if you are planning to use the microphone for video recording -->
+	<key>NSFaceIDUsageDescription</key>
+	<string>Allow DMaxWallet to use FaceID</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need to use microphone</string>
 	<key>CFBundleDevelopmentRegion</key>
@@ -22,7 +21,7 @@
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
-	<string>$(PRODUCT_NAME)</string>
+	<string>DMaxxWallet</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
