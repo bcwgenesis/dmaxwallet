@@ -7,9 +7,11 @@ import {Button, Text, ModalLoader} from '../../uikits';
 import {post} from '../../services';
 import {getBalance} from '../../utils';
 
-import LoginImage from '../../assets/images/login_image.png';
+import LoginImage from '../../assets/images/img_logo.png';
 
 import styles from './styles';
+import fonts from '../../styles/fonts';
+import color from '../../styles/color';
 
 const LoginPage = ({navigation}) => {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -48,21 +50,25 @@ const LoginPage = ({navigation}) => {
   return (
     <SafeAreaView style={styles.main}>
       <ModalLoader visible={isModalVisible} label="Requesting data ..." />
-      <Text size={16} weight="bold">
-        DMAX WALLET
-      </Text>
+      {/* <Text color={color.WHITE} size={16} family={fonts['Comfortaa-Bold']}>
+        xSGD WALLET
+      </Text> */}
       <View style={styles.welcomeDescContainer}>
-        <Text size={24} weight="bold">
+        <Text color={color.WHITE} size={24} family={fonts['Comfortaa-Bold']}>
           Welcome to
         </Text>
-        <Text size={24} weight="bold">
-          Dmax Wallet
+        <Text color={color.WHITE} size={24} family={fonts['Comfortaa-Bold']}>
+          xSGD Wallet
         </Text>
       </View>
 
       <View style={styles.descContainer}>
-        <Text size={14} style={styles.desc}>
-          Trusted by millions, Dmax Wallet is a secure wallet that makes the
+        <Text
+          color={color.WHITE}
+          size={14}
+          style={styles.desc}
+          family={fonts['Comfortaa-Medium']}>
+          Trusted by millions, xSGD Wallet is a secure wallet that makes the
           world of Cryptocurrency accessible to all
         </Text>
       </View>

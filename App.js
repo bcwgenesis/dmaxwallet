@@ -21,11 +21,11 @@ const App: () => Node = () => {
       <View
         style={{
           height: STATUS_BAR_HEIGHT,
-          backgroundColor: Color.FREE_SPEECH_BLUE,
+          backgroundColor: Color.BLACK_PRIMARY,
         }}>
         <StatusBar
           translucent
-          backgroundColor={Color.FREE_SPEECH_BLUE}
+          backgroundColor={Color.BLACK_PRIMARY}
           barStyle="light-content"
         />
       </View>

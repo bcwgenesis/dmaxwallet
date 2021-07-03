@@ -8,11 +8,11 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: Color.WHITE,
+    backgroundColor: Color.BLACK_PRIMARY,
   },
   welcomeDescContainer: {
     marginTop: 32,
-    marginBottom: 24,
+    marginBottom: 20,
     alignItems: 'center',
   },
   descContainer: {
@@ -20,7 +20,6 @@ const styles = StyleSheet.create({
   },
   desc: {
     textAlign: 'center',
-    color: Color.SUVA_GREY,
   },
   buttonContainer: {
     marginTop: 8,
@@ -32,14 +31,13 @@ const styles = StyleSheet.create({
   },
   buttonLabel: {
     textAlign: 'center',
-    fontWeight: 'bold',
-    color: Color.FREE_SPEECH_BLUE,
+    color: Color.BLACK_PRIMARY,
   },
   image: {
     width: deviceWidth() - 130,
     height: deviceHeight() / 3,
     resizeMode: 'contain',
-    marginTop: 16,
+    marginVertical: 16,
   },
 });
 

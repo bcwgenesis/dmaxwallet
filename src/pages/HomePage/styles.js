@@ -7,15 +7,20 @@ import Color from '../../styles/color';
 const styles = StyleSheet.create({
   main: {
     flex: 1,
-    backgroundColor: Color.FREE_SPEECH_BLUE,
+    backgroundColor: Color.BLACK_PRIMARY,
+  },
+  logoContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 20,
   },
   logo: {
-    width: deviceWidth() - 40,
-    height: deviceWidth() / 10,
+    width: 40,
+    height: 40,
     resizeMode: 'contain',
-    marginTop: 30,
-    marginBottom: 10,
-    alignSelf: 'center',
+    marginRight: 8,
+    marginTop: 3,
   },
   accountContainer: {
     elevation: 1,
@@ -49,7 +54,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontWeight: 'bold',
-    color: Color.FREE_SPEECH_BLUE,
+    color: Color.BLACK_PRIMARY,
   },
   propsContainer: {
     marginBottom: 10,
@@ -105,7 +110,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     fontSize: getFontSize(14),
     fontWeight: 'bold',
-    color: Color.FREE_SPEECH_BLUE,
+    color: Color.BLACK_PRIMARY,
   },
   flex1: {
     flex: 1,
@@ -121,12 +126,12 @@ const styles = StyleSheet.create({
   },
   dmaxBalanceFont: {
     fontSize: getFontSize(32),
-    color: Color.FREE_SPEECH_BLUE,
+    color: Color.BLACK_PRIMARY,
     fontWeight: 'bold',
   },
   privKeyTitle: {
     fontWeight: 'bold',
-    color: Color.FREE_SPEECH_BLUE,
+    color: Color.BLACK_PRIMARY,
     marginBottom: -5,
   },
   copyText: {

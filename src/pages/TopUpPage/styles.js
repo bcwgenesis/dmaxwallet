@@ -5,7 +5,7 @@ const styles = StyleSheet.create({
   main: {
     flex: 1,
     paddingTop: 20,
-    backgroundColor: Color.FREE_SPEECH_BLUE,
+    backgroundColor: Color.BLACK_PRIMARY,
     height: 40,
   },
   value: {

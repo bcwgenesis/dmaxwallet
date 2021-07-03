@@ -6,14 +6,15 @@ import {showToast, getBalance} from '../../utils';
 
 import styles from './styles';
 
-import AndroidSplash from '../../assets/images/splash_android_screen.png';
+import AndroidSplash from '../../assets/images/img_logo.png';
+import {Text} from '../../uikits';
+import Color from '../../styles/color';
+import fonts from '../../styles/fonts';
 
 const SplashPage = ({navigation}) => {
   const createAccount = () => {
-    console.log('create account');
     try {
       AsyncStorage.multiGet(['privateKey', 'publicKey']).then(data => {
-        console.log('data: '+data);
         if (data[0][1] && data[1][1]) {
           getBalance(
             data[1][1],
@@ -28,7 +29,6 @@ const SplashPage = ({navigation}) => {
             },
           );
         } else {
-          console.log('MASUK SINI');
           navigation.replace('LoginPage');
         }
       });
@@ -45,6 +45,9 @@ const SplashPage = ({navigation}) => {
   return (
     <SafeAreaView style={styles.main}>
       <Image source={AndroidSplash} style={styles.logo} />
+      <Text size={32} color={Color.WHITE} family={fonts['Comfortaa-Bold']}>
+        xSGD
+      </Text>
     </SafeAreaView>
   );
 };

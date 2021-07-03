@@ -14,6 +14,7 @@ const Text = props => {
     color,
     style,
     numberOfLines,
+    family,
   } = props;
 
   let textStyle = styles.main;
@@ -36,6 +37,13 @@ const Text = props => {
     textStyle = {
       ...textStyle,
       fontStyle,
+    };
+  }
+
+  if (family) {
+    textStyle = {
+      ...textStyle,
+      fontFamily: family,
     };
   }
 

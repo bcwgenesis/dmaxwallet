@@ -99,7 +99,7 @@ const TransferPage = ({navigation, route}) => {
       />
       <InputAmount
         label="MAX"
-        placeholder="Amount DMAX"
+        placeholder="Amount xSGD"
         onPress={() => setTransferAmount(dmaxBalance)}
         editable
         onChangeText={text => setTransferAmount(text)}

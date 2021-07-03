@@ -1,5 +1,6 @@
 import React from 'react';
 import {View, TouchableOpacity} from 'react-native';
+import fonts from '../../styles/fonts';
 
 import Text from '../Text';
 
@@ -13,7 +14,9 @@ const Button = props => {
       {icon ? <View style={styles.iconContainer}>{icon}</View> : <View />}
 
       <View style={[styles.labelContainer, labelContainerStyle]}>
-        <Text style={labelStyle}>{label}</Text>
+        <Text family={fonts['Comfortaa-SemiBold']} style={labelStyle}>
+          {label}
+        </Text>
       </View>
     </TouchableOpacity>
   );

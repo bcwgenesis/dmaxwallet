@@ -99,7 +99,7 @@ const Route = () => {
             return {
               header: () => (
                 <Header
-                  title={'Send DMAX'}
+                  title={'Send xSGD'}
                   onPressLeft={() => navigation.goBack()}
                   onPressRight={() =>
                     (route.params?.onPressRight &&

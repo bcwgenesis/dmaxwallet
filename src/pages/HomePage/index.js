@@ -20,6 +20,7 @@ import {
   parseBalance,
   parsePrivateKey,
   authenticate,
+  getFontSize,
 } from '../../utils';
 
 import {get} from '../../services';
@@ -28,6 +29,8 @@ import styles from './styles';
 
 import ImageLogo from '../../assets/images/img_logo.png';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import color from '../../styles/color';
+import fonts from '../../styles/fonts';
 
 const HomePage = ({navigation, route}) => {
   const {balance, pubkey, privkey, bnbBalance} = route?.params || {};
@@ -62,11 +65,19 @@ const HomePage = ({navigation, route}) => {
         }
         showsVerticalScrollIndicator={false}
         style={styles.main}>
-        <Image source={ImageLogo} style={styles.logo} />
+        <View style={styles.logoContainer}>
+          <Image source={ImageLogo} style={styles.logo} />
+          <Text
+            family={fonts['Comfortaa-Medium']}
+            size={getFontSize(24)}
+            color={color.WHITE}>
+            xSGD
+          </Text>
+        </View>
         <View style={styles.accountContainer}>
           <View style={styles.row}>
             <View style={styles.flex1}>
-              <Text style={styles.title}>DMAX Balance</Text>
+              <Text style={styles.title}>xSGD Balance</Text>
               <Text style={styles.dmaxBalanceFont}>
                 {dmaxBalance && parseFloat(dmaxBalance).toFixed(3)}
               </Text>
