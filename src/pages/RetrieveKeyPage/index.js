@@ -19,38 +19,55 @@ const RetrieveKeyPage = ({navigation}) => {
 
   const getPubKey = () => {
     setIsModalVisible(true);
-    post(`${API.GET_PUBLIC_KEY}/${privateKey}`)
-      .then(res => {
-        if (res.publicKey) {
-          getBalance(
-            res.publicKey,
-            privateKey,
-            (pubkey, privkey, balance, bnbBalance) => {
-              AsyncStorage.setItem('publicKey', pubkey);
-              AsyncStorage.setItem('privateKey', `0x${privkey}`);
-              setIsModalVisible(false);
-              navigation.reset({
-                index: 0,
-                routes: [
-                  {
-                    name: 'HomePage',
-                    params: {
-                      pubkey,
-                      privkey,
-                      balance,
-                      bnbBalance,
-                    },
-                  },
-                ],
-              });
-            },
-          );
-        }
-      })
-      .catch(error => {
-        setIsModalVisible(false);
-        showToast(error);
-      });
+    // post(`${API.GET_PUBLIC_KEY}/${privateKey}`)
+    //   .then(res => {
+    //     if (res.publicKey) {
+    //       getBalance(
+    //         res.publicKey,
+    //         privateKey,
+    //         (pubkey, privkey, balance, bnbBalance) => {
+    //           AsyncStorage.setItem('publicKey', pubkey);
+    //           AsyncStorage.setItem('privateKey', `0x${privkey}`);
+    //           setIsModalVisible(false);
+    //           navigation.reset({
+    //             index: 0,
+    //             routes: [
+    //               {
+    //                 name: 'HomePage',
+    //                 params: {
+    //                   pubkey,
+    //                   privkey,
+    //                   balance,
+    //                   bnbBalance,
+    //                 },
+    //               },
+    //             ],
+    //           });
+    //         },
+    //       );
+    //     }
+    //   })
+    //   .catch(error => {
+    //     setIsModalVisible(false);
+    //     showToast(error);
+    //   });
+    AsyncStorage.setItem('publicKey', '');
+    AsyncStorage.setItem('privateKey', `0x${''}`);
+    setIsModalVisible(false);
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'HomePage',
+          params: {
+            pubkey: '',
+            privkey: '',
+            balance: '',
+            bnbBalance: '',
+          },
+        },
+      ],
+    });
   };
 
   useEffect(() => {

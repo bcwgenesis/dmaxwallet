@@ -18,32 +18,49 @@ const LoginPage = ({navigation}) => {
 
   const createWallet = () => {
     setIsModalVisible(true);
-    post(API.CREATE_ACCOUNT).then(accountData => {
-      if (accountData) {
-        AsyncStorage.setItem('privateKey', accountData.newprivkey);
-        AsyncStorage.setItem('publicKey', accountData.newpubkey);
-        getBalance(
-          accountData.newpubkey,
-          accountData.newprivkey,
-          (pubkey, privkey, balance, bnbBalance) => {
-            setIsModalVisible(false);
-            navigation.reset({
-              index: 0,
-              routes: [
-                {
-                  name: 'HomePage',
-                  params: {
-                    pubkey,
-                    privkey,
-                    balance,
-                    bnbBalance,
-                  },
-                },
-              ],
-            });
+    // post(API.CREATE_ACCOUNT).then(accountData => {
+    //   if (accountData) {
+    //     AsyncStorage.setItem('privateKey', accountData.newprivkey);
+    //     AsyncStorage.setItem('publicKey', accountData.newpubkey);
+    //     getBalance(
+    //       accountData.newpubkey,
+    //       accountData.newprivkey,
+    //       (pubkey, privkey, balance, bnbBalance) => {
+    //         setIsModalVisible(false);
+    //         navigation.reset({
+    //           index: 0,
+    //           routes: [
+    //             {
+    //               name: 'HomePage',
+    //               params: {
+    //                 pubkey,
+    //                 privkey,
+    //                 balance,
+    //                 bnbBalance,
+    //               },
+    //             },
+    //           ],
+    //         });
+    //       },
+    //     );
+    //   }
+    // });
+    AsyncStorage.setItem('publicKey', '');
+    AsyncStorage.setItem('privateKey', `0x${''}`);
+    setIsModalVisible(false);
+    navigation.reset({
+      index: 0,
+      routes: [
+        {
+          name: 'HomePage',
+          params: {
+            pubkey: '',
+            privkey: '',
+            balance: '20',
+            bnbBalance: '20',
           },
-        );
-      }
+        },
+      ],
     });
   };
 

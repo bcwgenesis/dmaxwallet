@@ -42,19 +42,20 @@ const HomePage = ({navigation, route}) => {
 
   const refreshData = async () => {
     setIsRefresh(true);
-    try {
-      const response = await get(`${API.GET_BALANCE}/${pubkey}`);
-      const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
+    // try {
+    //   const response = await get(`${API.GET_BALANCE}/${pubkey}`);
+    //   const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
 
-      if (response && responseBnb) {
-        setDmaxBalance(response?.balance);
-        setBalanceBnb(responseBnb?.result);
-      }
-      setIsRefresh(false);
-    } catch (error) {
-      setIsRefresh(false);
-      showToast(error);
-    }
+    //   if (response && responseBnb) {
+    //     setDmaxBalance(response?.balance);
+    //     setBalanceBnb(responseBnb?.result);
+    //   }
+    //   setIsRefresh(false);
+    // } catch (error) {
+    //   setIsRefresh(false);
+    //   showToast(error);
+    // }
+    setIsRefresh(false);
   };
 
   return (
@@ -92,13 +93,13 @@ const HomePage = ({navigation, route}) => {
 
           <View style={styles.qrContainer}>
             <Text style={styles.qrTitle}>BSC Wallet Address</Text>
-            <QRCode value={pubkey} size={deviceWidth() - 200} />
+            <QRCode value={'http://google.com'} size={deviceWidth() - 200} />
           </View>
 
           <View style={styles.propsContainer}>
             <View style={styles.row}>
               <View style={styles.addressContainer}>
-                <Text numberOfLines={1}>{pubkey}</Text>
+                <Text numberOfLines={1}>{pubkey + 'http://pubkey'}</Text>
               </View>
               <View style={styles.copyButtonContainer}>
                 <Button
@@ -123,7 +124,7 @@ const HomePage = ({navigation, route}) => {
               ) : (
                 <View style={styles.addressContainer}>
                   <Text numberOfLines={1} style={styles.showText}>
-                    {parsePrivateKey(privkey)}
+                    {/* {parsePrivateKey(privkey)} */}
                   </Text>
                 </View>
               )}
@@ -137,7 +138,7 @@ const HomePage = ({navigation, route}) => {
                         setIsPrivateKeyHidden(false);
                       });
                     } else {
-                      Clipboard.setString(parsePrivateKey(privkey));
+                      // Clipboard.setString(parsePrivateKey(privkey));
                       showToast('Copied to clipboard!');
                     }
                   }}

@@ -26,17 +26,19 @@ const HistoryPage = ({route}) => {
   const [isRefresh, setIsRefresh] = useState(false);
 
   const getHistory = () => {
-    get(`${API.GET_HISTORY}/${pubkey}`)
-      .then(responseData => {
-        setHistoryData(responseData?.result);
-        setIsLoading(false);
-        setIsRefresh(false);
-      })
-      .catch(error => {
-        setIsLoading(false);
-        setIsRefresh(false);
-        showToast(error?.message || 'Something went wrong');
-      });
+    // get(`${API.GET_HISTORY}/${pubkey}`)
+    //   .then(responseData => {
+    //     setHistoryData(responseData?.result);
+    //     setIsLoading(false);
+    //     setIsRefresh(false);
+    //   })
+    //   .catch(error => {
+    //     setIsLoading(false);
+    //     setIsRefresh(false);
+    //     showToast(error?.message || 'Something went wrong');
+    //   });
+    setIsLoading(false);
+    setIsRefresh(false);
   };
 
   useEffect(() => {

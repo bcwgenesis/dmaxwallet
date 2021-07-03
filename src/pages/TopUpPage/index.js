@@ -33,21 +33,28 @@ const TopUpPage = ({navigation, route}) => {
       contractAddress: CONTRACT_ADDRESS,
     };
 
-    post(API.TOP_UP, params)
-      .then(async responseData => {
-        const response = await get(`${API.GET_BALANCE}/${pubkey}`);
-        const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
-        setRequestTopUp(false);
-        showToast('Top up success');
-        navigation.navigate('HomePage', {
-          balance: response?.balance,
-          bnbBalance: responseBnb?.result,
-        });
-      })
-      .catch(error => {
-        setRequestTopUp(false);
-        showToast(error?.message || 'Something went wrong');
-      });
+    // post(API.TOP_UP, params)
+    //   .then(async responseData => {
+    //     const response = await get(`${API.GET_BALANCE}/${pubkey}`);
+    //     const responseBnb = await get(`${API.GET_BNB_BALANCE}/${pubkey}`);
+    //     setRequestTopUp(false);
+    //     showToast('Top up success');
+    //     navigation.navigate('HomePage', {
+    //       balance: response?.balance,
+    //       bnbBalance: responseBnb?.result,
+    //     });
+    //   })
+    //   .catch(error => {
+    //     setRequestTopUp(false);
+    //     showToast(error?.message || 'Something went wrong');
+    //   });
+    //   })
+    setRequestTopUp(false);
+    showToast('Top up success');
+    navigation.navigate('HomePage', {
+      balance: '20',
+      bnbBalance: '20',
+    });
   };
 
   useEffect(() => {

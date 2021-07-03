@@ -36,16 +36,19 @@ const TransferPage = ({navigation, route}) => {
       privateKey: parsePrivateKey(privkey),
     };
 
-    post(API.TRANSFER, params)
-      .then(response => {
-        setRequestTransfer(false);
-        showToast('Transfer success');
-        navigation.goBack();
-      })
-      .catch(error => {
-        setRequestTransfer(false);
-        showToast(error);
-      });
+    // post(API.TRANSFER, params)
+    //   .then(response => {
+    //     setRequestTransfer(false);
+    //     showToast('Transfer success');
+    //     navigation.goBack();
+    //   })
+    //   .catch(error => {
+    //     setRequestTransfer(false);
+    //     showToast(error);
+    //   });
+    setRequestTransfer(false);
+    showToast('Transfer success');
+    navigation.goBack();
   };
 
   useEffect(() => {
